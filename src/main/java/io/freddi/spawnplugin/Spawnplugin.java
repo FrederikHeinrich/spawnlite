@@ -4,12 +4,21 @@ package io.freddi.spawnplugin;
  * this is just for the luls
  */
 public final class Spawnplugin extends org.bukkit.plugin.java.JavaPlugin {
+    private static boolean isFolia() {
+        try {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
     @Override
     public void onEnable() {
         org.bukkit.Bukkit.getCommandMap().register("spawn", new org.bukkit.command.Command("spawn") {
             @Override
             public boolean execute(@org.jetbrains.annotations.NotNull org.bukkit.command.CommandSender sender, @org.jetbrains.annotations.NotNull String commandLabel, @org.jetbrains.annotations.NotNull String[] args) {
-                if(sender instanceof org.bukkit.entity.Player player)player.teleport(player.getWorld().getSpawnLocation());
+                if(sender instanceof org.bukkit.entity.Player player && isFolia()) player.teleportAsync(player.getWorld().getSpawnLocation());
+                if(sender instanceof org.bukkit.entity.Player player && !isFolia())player.teleport(player.getWorld().getSpawnLocation());
                 return true;
             }
         });
