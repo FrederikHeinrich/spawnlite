@@ -1,7 +1,7 @@
 <div align="center">
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/spawnlite?style=for-the-badge&logo=modrinth&labelColor=29355F&color=009B98)](https://modrinth.com/plugin/joinprotection)
-[![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&url=https%3A%2F%2Fapi.spiget.org%2Fv2%2Fresources%2F111379&query=%24.downloads&label=SpigotMC&color=af6007
+[![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&url=https%3A%2F%2Fapi.spiget.org%2Fv2%2Fresources%2F111379&query=%24.downloads&label=SpigotMC&color=e49b0f&labelColor=af6007
 )](https://www.spigotmc.org/resources/111379/)
 [![Hangar Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhangar.papermc.io%2Fapi%2Fv1%2Fprojects%2Ffreddi%2FSpawnLite&query=%24.stats.downloads&style=for-the-badge&label=Hangar&color=27272a
 )](https://hangar.papermc.io/Freddi/SpawnLite)
