@@ -1,22 +1,10 @@
-import proguard.gradle.ProGuardTask
-
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        classpath 'com.guardsquare:proguard-gradle:7.3.0'
-    }
-}
-
 plugins {
     id 'java'
     id "com.modrinth.minotaur" version "2.+"
 }
 
 group = 'io.freddi'
-version = '1.1-Release'
+version = '1.1.1-Release'
 
 ext.baseCoordinates = "${project.name}-${project.version}"
 
@@ -34,7 +22,6 @@ repositories {
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20-R0.1-SNAPSHOT"
-    implementation 'com.guardsquare:proguard-gradle:7.3.2'
 }
 
 def targetJavaVersion = 17
@@ -60,6 +47,13 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+
+    // Hier wird der Ausschluss der META-INF-Ordner für Ressourcen durchgeführt
+    exclude 'META-INF/**'
+}
+
+jar {
+    exclude 'META-INF/MANIFEST.MF'
 }
 
 modrinth {

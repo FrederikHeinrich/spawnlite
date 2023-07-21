@@ -2,4 +2,4 @@ name: Spawn
 version: '${version}'
 main: io.freddi.spawnplugin.Spawnplugin
 website: discord.gg/freddi
-folia-supported: true
+folia-supported: false
