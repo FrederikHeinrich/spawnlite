@@ -3,3 +3,4 @@ version: '${version}'
 main: io.freddi.spawnplugin.Spawnplugin
 website: discord.gg/freddi
 folia-supported: true
+api-version: 1.13
