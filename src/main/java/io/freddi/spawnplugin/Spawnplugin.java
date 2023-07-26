@@ -14,6 +14,10 @@ public final class Spawnplugin extends org.bukkit.plugin.java.JavaPlugin {
     }
     @Override
     public void onEnable() {
+        Metrics metrics = new Metrics(this, 19244);
+
+        // Optional: Add custom charts
+        metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
         org.bukkit.Bukkit.getCommandMap().register("spawn", new org.bukkit.command.Command("spawn") {
             @Override
             public boolean execute(@org.jetbrains.annotations.NotNull org.bukkit.command.CommandSender sender, @org.jetbrains.annotations.NotNull String commandLabel, @org.jetbrains.annotations.NotNull String[] args) {
