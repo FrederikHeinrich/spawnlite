@@ -1,17 +1,13 @@
 package io.freddi.spawnplugin;
 
+import io.freddi.spawnplugin.events.PlayerTeleportSpawnEvent;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 /**
  * this is just for the luls
  */
 public final class Spawnplugin extends org.bukkit.plugin.java.JavaPlugin {
-    private static boolean isFolia() {
-        try {
-            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
     @Override
     public void onEnable() {
         Metrics metrics = new Metrics(this, 19244);
@@ -21,8 +17,7 @@ public final class Spawnplugin extends org.bukkit.plugin.java.JavaPlugin {
         org.bukkit.Bukkit.getCommandMap().register("spawn", new org.bukkit.command.Command("spawn") {
             @Override
             public boolean execute(@org.jetbrains.annotations.NotNull org.bukkit.command.CommandSender sender, @org.jetbrains.annotations.NotNull String commandLabel, @org.jetbrains.annotations.NotNull String[] args) {
-                if(sender instanceof org.bukkit.entity.Player player && isFolia()) player.teleportAsync(player.getWorld().getSpawnLocation());
-                if(sender instanceof org.bukkit.entity.Player player && !isFolia())player.teleport(player.getWorld().getSpawnLocation());
+                if(sender instanceof org.bukkit.entity.Player player) spawn(player);
                 return true;
             }
         });
@@ -38,5 +33,12 @@ public final class Spawnplugin extends org.bukkit.plugin.java.JavaPlugin {
             }
         });
         org.bukkit.Bukkit.getCommandMap().getCommand("setspawn").setPermission("minecraft.command.setworldspawn");
+    }
+
+    private void spawn(Player player){
+        PlayerTeleportSpawnEvent event = new PlayerTeleportSpawnEvent(player, player.getWorld().getSpawnLocation());
+        Bukkit.getPluginManager().callEvent(event);
+        if(!event.isCancelled()) player.teleport(event.getSpawnLocation());
+        else player.sendMessage("Teleport cancelled!");
     }
 }
